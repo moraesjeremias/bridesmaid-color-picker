@@ -1,10 +1,28 @@
-import {app} from './app.js';
+import { app } from './app.js';
+import sequelize from './config/dbConnection.js';
 
 const port = process.env.PORT || 3005;
-const server = app.listen(port,()=>{console.log(`Api is runnig on the port ${port}` )});
 
-//kill the process
-process.on('SIGINT',()=>{
-    server.close();
-    console.log(`  Port: ${port} has been closed `);
-});
+async function startServer() {
+    try {
+        await sequelize.authenticate();
+        console.log('✅ Database connected successfully!');
+        
+        const server = app.listen(port, () => {
+            console.log(`🚀 API is running on port ${port}`);
+        });
+        
+        process.on('SIGINT', () => {
+            server.close();
+            console.log(`📴 Port: ${port} has been closed`);
+            process.exit(0);
+        });
+        
+    } catch (error) {
+        console.error('❌ Unable to connect to database:', error);
+        process.exit(1);
+    }
+}
+
+// Iniciar tudo
+startServer();
