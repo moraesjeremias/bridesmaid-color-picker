@@ -1,6 +1,14 @@
 import { Color } from "./colors.js";
 import { User } from "./users.js";
 
-//garante 1-1 
-Color.hasOne(User);
-User.belongsTo(Color);
+Color.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'user'
+});
+
+User.hasOne(Color, {
+  foreignKey: 'userId',
+  as: 'color'
+});
+
+export { User, Color };

@@ -1,4 +1,4 @@
-import sequelize from "../config/dbConnection";
+import sequelize from "../config/dbConnection.js";
 import { DataTypes } from "sequelize";
 
 export const Color = sequelize.define("Colors",{
@@ -6,7 +6,6 @@ export const Color = sequelize.define("Colors",{
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        unique: true
     },
     displayName:{
         type: DataTypes.STRING,
