@@ -9,7 +9,6 @@ export const Color = sequelize.define("Colors",{
     },
     displayName:{
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
     },
     status:{
