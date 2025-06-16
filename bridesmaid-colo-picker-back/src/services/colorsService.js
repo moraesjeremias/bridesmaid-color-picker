@@ -3,23 +3,18 @@ import ColorException from "../models/exceptions/colorsException.js"
 
 class ColorsService {
 
-  getAvaibleColors = async () => {
+  getColors = async (availability) => {
     try{
-
-        const colors =await Color.findAll({
-            
+        const colors = await Color.findAll({
             where: {
-                avaiable: true
+                avaiable: availability
             },
         })
+        return colors;
     } catch(error){
         throw new ColorException("Cannot list the colors because: " + error, 500);
     }
-
-
-
 }
-
 }
 
 export const colorService = new ColorsService();

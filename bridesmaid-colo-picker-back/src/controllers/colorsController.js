@@ -4,7 +4,8 @@ class ColorsController {
 
   async avaiableColors(request, response) {
     try {
-      const result = await colorService.getAvaibleColors();
+      const { available } = request.query;
+      const result = await colorService.getColors(available);
       return response.status(200).json(result);
     } catch (error) {
       return response.status(error.status || 500).json(error.message);
