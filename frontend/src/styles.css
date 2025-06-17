@@ -1,0 +1,84 @@
+body {
+  background: linear-gradient(180deg, #ffe0ef 0%, #fff 100%);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(255, 0, 128, 0.08);
+  padding: 2rem;
+}
+h1, h2 {
+  color: #e75480;
+  margin-bottom: 0.5rem;
+}
+input, button {
+  font-size: 1rem;
+}
+input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ffe0ef;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.color-card {
+  border-radius: 12px;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #ffe0ef;
+  transition: box-shadow 0.2s;
+  background: #f9f9f9;
+}
+.color-card.selected {
+  border: 2px solid #e75480;
+  box-shadow: 0 0 0 2px #e7548033;
+}
+.color-card.taken {
+  opacity: 0.4;
+  pointer-events: none;
+  filter: grayscale(0.7);
+}
+button {
+  background: linear-gradient(90deg, #e75480 0%, #ffb6c1 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  transition: background 0.2s;
+}
+button:disabled {
+  background: #ffe0ef;
+  color: #e75480;
+  cursor: not-allowed;
+}
+.selected-colors {
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(255, 0, 128, 0.05);
+}
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+  .color-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

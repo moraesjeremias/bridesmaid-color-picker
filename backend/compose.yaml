@@ -1,0 +1,39 @@
+
+services:
+  db:
+    image: postgres:latest
+    container_name: bridesmaid_db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: bridesmaid_db
+    ports:
+      - "5435:5432"
+    networks:
+      - bridemaid-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5051:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - bridemaid-network
+    restart: unless-stopped 
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  bridemaid-network:
+    driver: bridge
