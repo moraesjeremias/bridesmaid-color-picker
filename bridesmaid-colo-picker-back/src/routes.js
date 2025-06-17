@@ -3,7 +3,7 @@ import { colorsController } from "./controllers/colorsController.js";
 
 const routes = Router();
 
-routes.get("/colors", colorsController.avaiableColors);
+routes.get("/colors", colorsController.getColors);
 routes.post("/colors", colorsController.chooseColor);
 
 

@@ -3,7 +3,7 @@ import { colorService } from "../services/colorsService.js";
 
 class ColorsController {
 
-  async avaiableColors(request, response) {
+  async getColors(request, response) {
     try {
       const { available } = request.query;
       const result = await colorService.getColors(available);
@@ -20,11 +20,11 @@ class ColorsController {
 
         const result = await colorService.reserveColor(userId,colorId);
 
-        return response.status(200).body(result);
+        return response.status(200).json(result);
 
       } catch (error) {
-        
-        throw new ColorException(error.getMessage, error.getStatus )
+
+        return response.status(error.status).json(error.message);
       }
   }
 
