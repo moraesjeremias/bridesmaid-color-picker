@@ -9,8 +9,9 @@ class ColorsService {
 
             const colors = await Color.findAll({
                 where: {
+                    //Ajustar o endpoint pra receber na query o avaiable se é true ou false
                     avaiable: true,
-                    status: "AVAILABLE",
+                    status: `${query}`,
                 },
             })
             return colors;
@@ -52,6 +53,7 @@ class ColorsService {
             await Color.update({
                 status: 'CONFIRMED',
                 userId,
+                avaiable: false,
                 reservedAt: new Date(),
             }, {
                 where: {
