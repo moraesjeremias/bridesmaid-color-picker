@@ -1,3 +1,4 @@
+import ColorException from "../models/exceptions/colorsException.js";
 import { colorService } from "../services/colorsService.js";
 
 class ColorsController {
@@ -11,8 +12,19 @@ class ColorsController {
     }
   }
 
-  async choseColor(request, response) {
+  async chooseColor(request, response) {
+      try {
 
+        const {userId, colorId } = request.body;
+
+        const result = await colorService.reserveColor(userId,colorId);
+
+        return response.status(200).body(result);
+
+      } catch (error) {
+        
+        throw new ColorException(error.getMessage, error.getStatus )
+      }
   }
 
   async checkStatusColor(request, response) {

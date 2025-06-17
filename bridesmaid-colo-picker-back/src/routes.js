@@ -5,5 +5,7 @@ const routes = Router();
 
 routes.get("/colors", colorsController.avaiableColors);
 
+routes.post("/colors", colorsController.chooseColor);
+
 
 export  {routes};
