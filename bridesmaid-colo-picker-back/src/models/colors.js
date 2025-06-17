@@ -1,4 +1,3 @@
-import { version } from "react";
 import sequelize from "../config/dbConnection.js";
 import { DataTypes } from "sequelize";
 
