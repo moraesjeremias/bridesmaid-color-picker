@@ -10,8 +10,7 @@ class ColorsService {
             const colors = await Color.findAll({
                 where: {
                     //Ajustar o endpoint pra receber na query o avaiable se é true ou false
-                    avaiable: true,
-                    status: `${query}`,
+                    available: query,
                 },
             })
             return colors;
@@ -33,7 +32,7 @@ class ColorsService {
                 lock: transaction.LOCK.UPDATE
             });
 
-            if (color.status !== "AVAILABLE" || !color.avaiable) {
+            if (color.status !== "AVAILABLE" || !color.available) {
                 throw new ColorException("Cor não está mais disponível", 404);
             };
 

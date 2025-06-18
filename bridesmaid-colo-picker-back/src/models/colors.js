@@ -19,7 +19,7 @@ export const Color = sequelize.define("Colors", {
             isIn: [['AVAILABLE', 'RESERVED', 'CONFIRMED']]
         }
     },
-    avaiable: {
+    available: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
         allowNull: false,

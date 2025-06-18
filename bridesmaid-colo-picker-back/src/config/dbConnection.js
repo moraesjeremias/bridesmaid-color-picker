@@ -4,8 +4,8 @@ const sequelize = new Sequelize({
   database: process.env.POSTGRES_DB || 'bridemaid',
   username: process.env.POSTGRES_USER || 'myuser',
   password: process.env.POSTGRES_PASSWORD || 'mypassword',
-  host: 'localhost',
-  port: 5432,
+  host: process.env.POSTGRES_URL || 'localhost',
+  port: Number(process.env.POSTGRES_PASSWORD) || 5432,
   dialect: 'postgres',
 });
 
