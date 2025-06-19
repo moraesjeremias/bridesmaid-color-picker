@@ -5,11 +5,12 @@ import CryptoJS from 'crypto-js';
 import getAvaibleColors from '../../api/colors.js'
 import Title from '../../components/Title/Title';
 import Header from '../../components/Header/Header.jsx';
+import { useNavigate } from 'react-router-dom'
 import styles from './WelcomePage.module.css'
 
 export default function WelcomePage() {
     const [name, setName] = useState("");
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         let userId = Cookies.get("userId");
@@ -29,7 +30,14 @@ export default function WelcomePage() {
         console.log(colors)
     }
 
-
+    const rules = [
+        "As numerações aqui contidas correspondem aos números inseridos no catálogo de cores enviado pelos noivos;",
+        "Após o sinal da noiva, todas devem selecionar a cor desejada e enviar para submissão;",
+        "Apenas uma cor pode ser escolhida por pessoa;",
+        "Após a escolha de determinada cor, ela sumirá da lista;",
+        "Caso a cor escolhida esteja indisponível, escolha outra e repita o processo;",
+        "Divirta-se!!"
+    ];
     return (
         <>
             <Header />
@@ -42,14 +50,12 @@ export default function WelcomePage() {
                     <Title size='large' text='Bem-vinda à corrida das madrinhas!' />
 
                     <div className={styles.infoWrapper}>
-
-                        <p> As regras para a escolha da cor do vestido são: </p>
-                        <p>- As numerações aqui contidas correspondem aos números inseridos no catálogo de cores enviado pelos noivos; </p>
-                        <p>- Após o sinal da noiva, todas devem selecionar a cor desejada e enviar para submissão; </p>
-                        <p>- Apenas uma cor pode ser escolhida por pessoa; </p>
-                        <p>- Após a escolha de determinada cor, ela sumirá da lista; </p>
-                        <p>- Caso a cor escolhida esteja indisponível, escolha outra e repita o processo; </p>
-                        <p>- Divirta-se!! </p>
+                        <p>As regras para a escolha da cor do vestido são:</p>
+                        <ul>
+                            {rules.map((rule, index) => (
+                                <li key={index}>- {rule}</li>
+                            ))}
+                        </ul>
 
                     </div>
 
@@ -66,6 +72,7 @@ export default function WelcomePage() {
                         <button onClick={() => {
                             getColors()
                             getUserId()
+                            navigate('/colors')
                         }}>
                             Enviar
                         </button>
