@@ -52,7 +52,11 @@ const ColorPicker = ({ user, onColorSelected }) => {
         fetchColors();
       }, 1000);
     } catch (err) {
-      setError(err.response?.data?.message || err.message || 'Erro ao reservar cor. Tente novamente.');
+        if (err.response.status === 404) {
+            setError('Cor já reservada. Clique no botão para atualizar as cores e tente outra cor.');
+        }  
+      console.info('Error choosing color:');
+      console.error(err);
     } finally {
       setIsSubmitting(false);
     }
