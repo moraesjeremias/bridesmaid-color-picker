@@ -1,0 +1,16 @@
+header {
+    height: 20vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #ec4899;
+    stroke: currentColor;
+    fill: currentColor;
+}

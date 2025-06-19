@@ -1,0 +1,62 @@
+p {
+    margin: 1rem;
+    line-height: 2rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+p:first-child {
+    color: #f34848;
+}
+
+.wraperContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.collumWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    border-radius: 0.8rem;
+}
+
+.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-align: start;
+}
+
+button {
+    border-radius: 0.8rem;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #afb3fb;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    padding: 1.5rem 3rem;
+    margin: 1.5rem;
+    color: white;
+}
+
+button:hover{
+    background-color: #535bf2;
+    border:1px solid  black;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

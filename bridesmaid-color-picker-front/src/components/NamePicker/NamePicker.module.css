@@ -1,0 +1,26 @@
+.bridesmaid-input-name {
+    background: var(--title-color);
+    color: white;
+}
+
+.name-picker-container {
+    padding: 1rem 3rem;
+
+}
+
+input:focus {
+    outline: none;
+    border-color: #be185d;
+    box-shadow: 0 0 0 3px #ec48991a;
+}
+
+input {
+    margin: 1.2rem;
+    padding: 1rem 2rem;
+    border: 0.3rem solid #ec48991a;
+    background: #f7d1e6;
+    border-radius: 0.8rem;
+    font-size: 1.8rem;
+    box-sizing: border-box;
+    color: black;
+}
