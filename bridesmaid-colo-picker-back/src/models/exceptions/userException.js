@@ -1,4 +1,4 @@
-export default class ColorException extends Error {
+export default class UserException extends Error {
     status;
     constructor(message, status){
         super(message);

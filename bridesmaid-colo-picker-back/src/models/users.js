@@ -3,14 +3,18 @@ import { DataTypes } from "sequelize";
 
 export const User = sequelize.define("Users",{
     id:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true
     },
     name:{
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+    },
+    hasPickedColor:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
     }
 });
