@@ -43,8 +43,6 @@ export default function WelcomePage() {
             <Header />
             <div className={styles.wraperContainer}>
 
-
-
                 <div className={styles.collumWrapper}>
 
                     <Title size='large' text='Bem-vinda à corrida das madrinhas!' />
