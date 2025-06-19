@@ -5,12 +5,16 @@ export const User = sequelize.define("Users",{
     id:{
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        unique: true,
+    },
+    colorPicked: {
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     name:{
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
     },
     hasPickedColor:{
         type: DataTypes.BOOLEAN,

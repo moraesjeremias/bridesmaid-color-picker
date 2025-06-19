@@ -1,5 +1,6 @@
 import sequelize from "../config/dbConnection.js";
 import { DataTypes } from "sequelize";
+import { Op } from "sequelize";
 
 export const Color = sequelize.define("Colors", {
     id: {
@@ -29,7 +30,7 @@ export const Color = sequelize.define("Colors", {
         allowNull: false,
     },
     userId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: {
             model: "Users",
             key: 'id'

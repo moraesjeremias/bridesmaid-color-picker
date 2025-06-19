@@ -23,7 +23,9 @@ class ColorsController {
         return response.status(200).json(result);
 
       } catch (error) {
-
+        if (!error.status) {
+          return response.status(500).json(error.message);
+        }
         return response.status(error.status).json(error.message);
       }
   }
