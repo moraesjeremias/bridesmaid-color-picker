@@ -1,13 +1,6 @@
 import { CheckCircle, Heart, Share2 } from 'lucide-react';
-import { useEffect } from 'react';
 
 const ColorSuccess = ({ user, selectedColor, onReset }) => {
-
-useEffect(() => {
-    console.log("selectedColor");
-  console.log(selectedColor);
-}, []);
-
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -18,7 +11,7 @@ useEffect(() => {
     } else {
       // Fallback: copy to clipboard
       navigator.clipboard.writeText(
-        `Acabei de reservar a cor ${selectedColor.displayName}-${selectedColor.id} para ser bridesmaid! 💕`
+        `Gente, acabei de reservar a cor ${selectedColor.displayName}-${selectedColor.id} para ser Madrinha da Maria! 💕`
       );
       alert('Texto copiado para a área de transferência!');
     }
@@ -44,7 +37,7 @@ useEffect(() => {
           style={{ backgroundColor: selectedColor.hex }}
         />
         <h3 className="text-xl font-bold text-gray-800 mb-2">
-          {selectedColor.displayName}
+          {selectedColor.displayName}-{selectedColor.id}
         </h3>
         <p className="text-gray-600 text-sm">
           Esta é sua cor especial para o grande dia!

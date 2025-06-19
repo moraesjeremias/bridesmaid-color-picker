@@ -11,6 +11,10 @@ const api = axios.create({
 
 // Colors API
 export const colorsAPI = {
+  getColor: async (id) => {
+    const response = await api.get(`/colors/${id}`);
+    return response.data;
+  },
   getColors: async (available = true) => {
     const response = await api.get(`/colors?available=${available}`);
     return response.data;

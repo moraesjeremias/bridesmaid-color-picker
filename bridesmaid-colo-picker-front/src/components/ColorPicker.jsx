@@ -44,9 +44,8 @@ const ColorPicker = ({ user, onColorSelected }) => {
 
     try {
       const result = await colorsAPI.chooseColor(user.id, selectedColor.id);
-      console.log(result);
       setSuccess('Cor reservada com sucesso! 🎉');
-      onColorSelected(result);
+      onColorSelected(selectedColor);
       
       // Refresh colors to show updated status
       setTimeout(() => {
@@ -146,7 +145,7 @@ const ColorPicker = ({ user, onColorSelected }) => {
         <div className="text-center">
           <div className="mb-4 p-4 bg-primary-50 rounded-lg">
             <p className="text-primary-800 font-medium">
-              Cor selecionada: <span className="font-bold">{selectedColor.displayName}</span>
+              Cor selecionada: <span className="font-bold">{selectedColor.displayName}-{selectedColor.id}</span>
             </p>
             <div
               className="w-8 h-8 rounded-full mx-auto mt-2 border-2 border-white shadow-md"

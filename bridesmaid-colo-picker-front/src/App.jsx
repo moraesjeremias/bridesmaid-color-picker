@@ -5,7 +5,7 @@ import ColorPicker from './components/ColorPicker'
 import ColorSuccess from './components/ColorSuccess'
 import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
-import { usersAPI } from './services/api';
+import { usersAPI, colorsAPI } from './services/api';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -32,7 +32,9 @@ function App() {
         setCurrentStep('picker');
         return;
     } else {
+        const colorFromAPI = await colorsAPI.getColor(userFromAPI.colorPicked);
         setUser(userFromAPI);
+        setSelectedColor(colorFromAPI);
         setCurrentStep('success');
         return;
     }
