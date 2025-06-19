@@ -1,6 +1,6 @@
 import Header from "../../components/Header/Header";
 import Title from "../../components/Title/Title";
-import { getAvaibleColors } from "../../api/colors"
+import { getAvaibleColors } from "../../api/colors.js"
 import { useEffect, useState } from "react";
 
 export default function ColorsPickPage() {
