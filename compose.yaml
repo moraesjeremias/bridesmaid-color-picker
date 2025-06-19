@@ -1,0 +1,72 @@
+
+services:
+  db:
+    image: postgres:latest
+    container_name: bridesmaid
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: bridemaid
+    ports:
+      - "5436:5432"
+    networks:
+      - bridemaid-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  bridesmaid-back:
+    image: moraesjeremias/bridesmaid-color-picker-back:latest
+    depends_on:
+      - db
+    restart: on-failure:5
+    ports:
+      - "3005:3005"
+    networks:
+      - bridemaid-network
+    environment:
+      POSTGRES_DB: bridemaid
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_URL: bridesmaid
+      POSTGRES_PORT: 5432
+  bridesmaid-front:
+    image: moraesjeremias/bridesmaid-color-picker-front:v1.1.0
+    depends_on:
+      - bridesmaid-back
+    restart: on-failure:5
+    ports:
+      - "3000:3000"
+    networks:
+      - bridemaid-network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5055:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - bridemaid-network
+    restart: unless-stopped 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    networks:
+      - bridemaid-network
+    volumes:
+      - nginx_data:/etc/nginx/conf.d
+    depends_on:
+      - bridesmaid-back
+      - bridesmaid-front
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  bridemaid-network:
+    driver: bridge
