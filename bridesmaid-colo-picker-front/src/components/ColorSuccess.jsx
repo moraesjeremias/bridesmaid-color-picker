@@ -1,6 +1,10 @@
 import { CheckCircle, Heart, Share2 } from 'lucide-react';
 
 const ColorSuccess = ({ user, selectedColor, onReset }) => {
+    const trimId = (id) => {
+        return id.slice(0, 12)
+    }
+
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
@@ -59,7 +63,7 @@ const ColorSuccess = ({ user, selectedColor, onReset }) => {
         <p className="text-sm text-blue-800">
           💡 <strong>Dica:</strong> Guarde seu ID de usuário para acessar suas informações depois: 
           <code className="block mt-1 bg-blue-100 px-2 py-1 rounded text-xs font-mono">
-            {user.id}
+            {trimId(user.id)}
           </code>
         </p>
       </div>
