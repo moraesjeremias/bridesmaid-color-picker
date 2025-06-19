@@ -1,5 +1,7 @@
 import sequelize from "../config/dbConnection.js";
+import { Transaction } from "sequelize";
 import { Color } from "../models/colors.js";
+import { User } from "../models/users.js";
 import ColorException from "../models/exceptions/colorsException.js"
 
 class ColorsService {
@@ -21,10 +23,11 @@ class ColorsService {
 
     //Ficou desse tamanho? Sim, mas tá garantindo Pessimistic Locking
     reserveColor = async (userId, colorId) => {
+        let transaction;
         try {
 
-            const transaction = await sequelize.transaction({
-                isolationLevel: sequelize.Transaction.ISOLATION_LEVELS.READ_COMMITTED
+            transaction = await sequelize.transaction({
+                isolationLevel: Transaction.ISOLATION_LEVELS.READ_COMMITTED
             });
 
             const color = await Color.findByPk(colorId, {
@@ -52,13 +55,22 @@ class ColorsService {
             await Color.update({
                 status: 'CONFIRMED',
                 userId,
-                avaiable: false,
+                available: false,
                 reservedAt: new Date(),
             }, {
                 where: {
                     id: colorId
                 },
                 transaction
+            });
+
+            await User.update({
+                colorPicked: colorId,
+                hasPickedColor: true,
+            }, {
+                where: {
+                    id: userId
+                }, transaction
             });
 
             await transaction.commit();
@@ -71,7 +83,9 @@ class ColorsService {
 
         } catch (error) {
 
-            await transaction.rollback();
+            if (transaction) {
+                await transaction.rollback();
+            }
 
             if (error.name === 'SequelizeUniqueConstraintError' ||
                 error.message.includes('unique_user_active_color')) {
