@@ -52,12 +52,23 @@ body {
 }
 
 
-
-.info-text {
-  color: var(--normal-text-color);
-  padding: 20px 20px;
+.wraperContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f9f9f9;
 }
 
+.collumWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    border-radius: 0.8rem;
+}
 
 @media (max-width:500px) {
   :root {

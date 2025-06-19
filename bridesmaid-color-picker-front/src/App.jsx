@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Card from './components/Card.jsx';
 import WelcomePage from './views/welcomePage/WelcomePage.jsx';
+import ColorsPickPage from './views/colorsPickPage/ColorsPickPage.jsx';
 
 
 function App() {
@@ -14,6 +14,10 @@ function App() {
         <Route path='/'
         element={<WelcomePage/>}/>
 
+        <Route
+          path='/colors'
+          element={<ColorsPickPage/>}
+        />
       </Routes>
     </Router>
   )
