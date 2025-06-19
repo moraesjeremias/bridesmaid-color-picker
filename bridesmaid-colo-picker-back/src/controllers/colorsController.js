@@ -3,6 +3,16 @@ import { colorService } from "../services/colorsService.js";
 
 class ColorsController {
 
+    async getColor(request, response) {
+        try {
+            const { id } = request.params;
+            const result = await colorService.getColor(id);
+            return response.status(200).json(result);
+        } catch (error) {
+            return response.status(error.status || 500).json(error.message);
+        }
+    }
+
   async getColors(request, response) {
     try {
       const { available } = request.query;

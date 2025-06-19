@@ -6,6 +6,11 @@ import ColorException from "../models/exceptions/colorsException.js"
 
 class ColorsService {
 
+    getColor = async (id) => {
+        const color = await Color.findByPk(id);
+        return color;
+    }
+
     getAvaibleColors = async (query) => {
         try {
 

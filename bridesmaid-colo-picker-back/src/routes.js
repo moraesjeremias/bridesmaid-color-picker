@@ -6,6 +6,7 @@ import { statusController } from "./controllers/statusController.js";
 const routes = Router();
 
 routes.get("/colors", colorsController.getColors);
+routes.get("/colors/:id", colorsController.getColor);
 routes.post("/colors", colorsController.chooseColor);
 routes.get("/users/:id", userController.getUser);
 routes.post("/users", userController.createUser);
