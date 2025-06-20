@@ -104,14 +104,6 @@ const ColorPicker = ({ user, onColorSelected }) => {
         </p>
       </div>
 
-      {error && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <div className="flex items-center">
-            <X className="w-5 h-5 text-red-600 mr-2" />
-            <span className="text-red-800">{error}</span>
-          </div>
-        </div>
-      )}
 
       {success && (
         <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -177,6 +169,15 @@ const ColorPicker = ({ user, onColorSelected }) => {
         </div>
       )}
 
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <div className="flex items-center">
+            <X className="w-5 h-5 text-red-600 mr-2" />
+            <span className="text-red-800">{error}</span>
+          </div>
+        </div>
+      )}
+      
       <div className="text-center mt-6">
         <button
           onClick={fetchColors}
